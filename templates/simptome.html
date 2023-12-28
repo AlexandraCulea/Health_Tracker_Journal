@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jurnal de Sănătate</title>
+
+
+    <style>
+        /* Stilizare pentru elementele option */
+        select {
+            appearance: none; /* Ascunde săgeata dropdown-ul pentru stilizare */
+            padding: 5px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICA8cGF0aCBkPSJNMS41IDEuNSBMMS41IDguNSAxLjUgOCAxLjUgOCAxLjUgOSA1IDkgNSA4IDAgMTAgMTAgMTAgMTAgMTAgOSAxMCA5IDEwIDEwIDEwIDEwIDEwIDEwIDEwIDEwIDEweiIvPgo8L3N2Zz4=');
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simptome...</h1>
+    <div>
+        <label for="simptome">Simptome:</label>
+
+        <input type="text" id="simptome-input" name="simptome-input">   
+
+        <select id="simptome" name="simptome" multiple>
+            <option value="Durere de cap">Durere de cap</option>
+            <option value="Febra">Febra</option>
+            <option value="Extenuare">Extenuare</option>
+            <option value="Ameteala">Ameteala</option>
+            <option value="Durere de gat">Durere de gat</option>
+            <option value="Durere de spate">Durere de spate</option>
+            <option value="Raceala">Raceala</option>
+            <option value="Crampe">Crampe</option>
+            <option value="Frisoane">Frisoane</option>
+            <option value="Mancarime">Mancarime</option>
+            <option value="Greata">Greata</option>
+            <option value="Indigestie">Indigestie</option>
+            <option value="Insomnie">Insomine</option>
+
+            <input type="submit" value="Trimite">
+
+        </select><br><br>
+    
+    </div>
+
+
+
+    <h2>Activități înregistrate:</h2>
+    <ul>
+        {% for activitate in activitati %}
+            <li>Activitate: {{ simptome-input }}, Simptome: {{ simptome }}</li>
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>
