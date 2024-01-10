@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Obiectiv</title>
+    </head>
+    <body>
+        <h1>
+            Obiectiv
+        </h1>
+        <form action="/proceseaza_obiectiv" method="post">
+            <label for="somn">Somn:</label>
+            <input type="text" name="somn" id="somn"><br><br>
+            <label for="sport">Minute de exercitii:</label>
+            <input type="text" name="sport" id="sport"><br><br>
+            <input type="submit" value="Trimite">
+        </form>
+        {% for item in obiectiv %}
+            Somn: {{ item.ore_dormite }}, Sport: {{item.durata_activitati}}
+        {% endfor %}
+    </body>
+</html>

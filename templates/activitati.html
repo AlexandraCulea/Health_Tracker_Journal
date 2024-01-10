@@ -6,23 +6,38 @@
 <body>
     <h1>Activitati zilnice!</h1>
     <div>
-        <label for="Somn">Numar de ore dormite: </label>
-        <input type="text" id="somn" name="somn"><br><br>
+        <form action="/proceseaza_activitati" method="post">
 
-        <label for="Sport">Durata activitatii fizice (minute): </label>
-        <input type="text" id="sport" name="sport"><br><br>
-
-        <label for="Mic">Mic dejun: </label>
-        <input type="mic" id="mic" name="mic"><br><br>
-
-        <label for="Pranz">Pranz: </label>
-        <input type="pranz" id="pranz" name="pranz"><br><br>
-
-        <label for="Cina">Cina: </label>
-        <input type="cina" id="cina" name="cina"><br><br>
+            <label for="Somn">Numar de ore dormite: </label>
+            <input type="text" id="somn" name="somn"><br><br>
     
-    </div>
+            <label for="Sport">Durata activitatii fizice (minute): </label>
+            <input type="text" id="sport" name="sport"><br><br>
+    
+            <label for="Mic">Mic dejun: </label>
+            <input type="mic" id="mic" name="mic"><br><br>
+    
+            <label for="Pranz">Pranz: </label>
+            <input type="pranz" id="pranz" name="pranz"><br><br>
+    
+            <label for="Cina">Cina: </label>
+            <input type="cina" id="cina" name="cina"><br><br>
 
+            <input type="submit" value="Salveaza">
+        </form>  
+    </div>
+    <div>
+        <ul>
+            {% for activitate in activitati %}
+                <li>{{ activitate.data.strftime('%d.%m.%Y') }} - {{ activitate.ore_dormite }} - {{activitate.durata_activitati}} - {{activitate.mic_dejun}} - {{activitate.pranz}} - {{activitate.cina}} 
+                    <form action="/sterge_activitate" method="post">
+                        <input type="hidden" name="id" id="id" value={{activitate.id}} >
+                        <input type="submit" value="Sterge">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
     
 </body>
 </html>

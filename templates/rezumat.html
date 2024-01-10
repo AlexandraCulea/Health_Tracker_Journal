@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+            }
+        </style>
+        <title>Rezumat</title>
+    </head>
+    <body>
+        <div>
+            <h1>Rezumat Zilnic</h1>
+            <table id="rezumat_zilnic">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Ore dormite</th>
+                        <th>Minute de activtate</th>
+                        <th>Simptom</th>
+                        <th>Stare</th>
+                        <th>Obiectiv Somn</th>
+                        <th>Obiectiv Durata Activitati</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in result_zilnic %}
+                        <tr>
+                            <td>{{ row[0].data.strftime('%d.%m.%Y') }}</td>
+                            <td>{{ row[0].ore_dormite }}</td>
+                            <td>{{ row[0].durata_activitati }}</td>
+                            <td>{{ row[1].simptom_input + " " + row[1].simptom_select }}</td>
+                            <td>{{ row[2].stare }}</td>
+                            {% for item in obiectiv %}
+                                {% set somn = row[0].ore_dormite | int %}
+                                {% set obiectiv_somn = item.ore_dormite | int %}
+                                {% set procent_obiectiv = somn*100/obiectiv_somn %}
+                                {% if procent_obiectiv < 30 %}
+                                    <td>
+                                        mai incearca ({{ procent_obiectiv }}%)
+                                    </td>
+                                {% endif %}
+                                {% if procent_obiectiv >= 30 and procent_obiectiv < 70 %}
+                                    <td>esti pe calea cea buna({{ procent_obiectiv }}%)</td>
+                                {% endif %}
+                                {% if procent_obiectiv >= 70 and procent_obiectiv < 100 %}
+                                    <td>excelent({{ procent_obiectiv }}%)</td>
+                                {% endif %}
+                                {% if procent_obiectiv >= 100 %}
+                                    <td>felicitari, obiectiv atins({{ procent_obiectiv }}%)</td>
+                                {% endif %}
+
+                                {% set sport = row[0].durata_activitati | int %}
+                                {% set obiectiv_sport = item.durata_activitati | int %}
+                                {% set procent_obiectiv_sport = sport*100/obiectiv_sport %}
+                                {% if procent_obiectiv_sport < 30 %}
+                                    <td>mai incearca({{ procent_obiectiv_sport }}%)</td>
+                                {% endif %}
+                                {% if procent_obiectiv_sport >= 30 and procent_obiectiv_sport < 70 %}
+                                    <td>esti pe calea cea buna({{ procent_obiectiv_sport }}%)</td>
+                                {% endif %}
+                                {% if procent_obiectiv_sport >= 70 and procent_obiectiv_sport < 100 %}
+                                    <td>excelent({{ procent_obiectiv_sport }}%)</td>
+                                {% endif %}
+                                {% if procent_obiectiv_sport >= 100 %}
+                                    <td>felicitari, obiectiv atins({{ procent_obiectiv_sport }}%)</td>
+                                {% endif %}
+            
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br>
+            <button onclick="exportTableToCSV('rezumat_zilnic', 'export_rezumat_zilnic.csv')">Exportă CSV</button>
+        </div>
+        <div>
+            <h1>Rezumat Saptamanal</h1>
+            <table id="rezumat_saptamanal">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Ore dormite</th>
+                        <th>Minute de activtate</th>
+                        <th>Simptom</th>
+                        <th>Stare</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in result_saptamana %}
+                        <tr>
+                            <td>{{ row[0].data.strftime('%d.%m.%Y') }}</td>
+                            <td>{{ row[0].ore_dormite }}</td>
+                            <td>{{ row[0].durata_activitati }}</td>
+                            <td>{{ row[1].simptom_input + " " + row[1].simptom_select }}</td>
+                            <td>{{ row[2].stare }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br>
+            <button onclick="exportTableToCSV('rezumat_saptamanal', 'export_rezumat_saptamanal.csv')">Exportă CSV</button>
+        </div>
+
+        <script>
+            function downloadCSV(csv, filename) {
+              let csvFile;
+              let downloadLink;
+            
+              csvFile = new Blob([csv], {type: 'text/csv'});
+              downloadLink = document.createElement('a');
+              downloadLink.download = filename;
+              downloadLink.href = window.URL.createObjectURL(csvFile);
+              downloadLink.style.display = 'none';
+            
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+            }
+            
+            function exportTableToCSV(tableId, filename) {
+              var csv = [];
+              var rows = document.getElementById(tableId).querySelectorAll('tr');
+            
+              for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll('td, th');
+            
+                for (var j = 0; j < cols.length; j++) {
+                  row.push(cols[j].innerText);
+                }
+            
+                csv.push(row.join(','));
+              }
+            
+              downloadCSV(csv.join('\n'), filename);
+            }
+            </script>
+            
+    </body>
+</html>

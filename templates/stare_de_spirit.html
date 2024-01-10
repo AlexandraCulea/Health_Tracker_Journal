@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jurnal de Sănătate</title>
+
+
+    <style>
+        /* Stilizare pentru elementele option */
+        select {
+            appearance: none; /* Ascunde săgeata dropdown-ul pentru stilizare */
+            padding: 5px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICA8cGF0aCBkPSJNMS41IDEuNSBMMS41IDguNSAxLjUgOCAxLjUgOCAxLjUgOSA1IDkgNSA4IDAgMTAgMTAgMTAgMTAgMTAgOSAxMCA5IDEwIDEwIDEwIDEwIDEwIDEwIDEwIDEwIDEweiIvPgo8L3N2Zz4=');
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stare de spirit...</h1>
+    <div>        
+        <form action="/proceseaza_stare_de_spirit" method="post">
+            <label for="stare_spirit">Stare de spirit:</label>
+            <input type="text" id="stare_spirit" name="stare_spirit"> <br>
+            <label for="emotie">Emotie:</label>
+            <input type="text" id="emotie" name="emotie"> <br>
+            <br> <br>
+            <input type="submit" value="Trimite"></imput>
+        </form>
+    </div>
+
+
+
+    <h2>Activități înregistrate:</h2>
+    <ul>
+        {% for activitate in stari_de_spirit %}
+            <li>
+                Activitate: {{ activitate.stare }}, Simptome: {{ activitate.emotie }}
+                <form action="/sterge_stare_de_spirit" method="post">
+                    <input type="hidden" name="id" id="id" value={{activitate.id}} >
+                    <input type="submit" value="Sterge">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>
