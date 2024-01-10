@@ -135,3 +135,5 @@ def proceseaza_obiectiv():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    #nskmnnksjm
+    
