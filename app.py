@@ -12,6 +12,15 @@ with app.app_context():
         db.init_app(app)
         migrate = Migrate(app, db)
         date = datetime.now().date()
+        # activitate = Activitati(data = datetime.strptime("2024-01-10", "%Y-%m-%d"), ore_dormite = 7, durata_activitati = 45, mic_dejun = "ovaz", pranz="mazare", cina="lapte")
+        # db.session.add(activitate)
+        # db.session.commit()
+        # simptom = Simptome(data = datetime.strptime("2024-01-10", "%Y-%m-%d"), simptom_input = "migrena", simptom_select = "Ameteala")
+        # db.session.add(simptom)
+        # db.session.commit()
+        # stare = StareDeSpirit(data = datetime.strptime("2024-01-10", "%Y-%m-%d"), stare = "buna", emotie = "fericire")
+        # db.session.add(stare)
+        # db.session.commit()
 
 @app.route('/')
 def index():
@@ -135,5 +144,5 @@ def proceseaza_obiectiv():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    #nskmnnksjm
+
     

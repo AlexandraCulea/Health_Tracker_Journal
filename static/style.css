@@ -1,0 +1,117 @@
+html, body {
+    background-color: #E6B9DE;
+    width: 100%;
+    height: 100%;
+}
+.body2 {
+    
+    width: 50%;
+    height: 60%;
+    margin-left: 27%;
+    margin-right: auto;
+    background-color: #ea87d8;
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    border-radius: 20%;
+    text-align: center;
+    background-size: contain;
+    background-image: url("images/poza_index.jpg")
+}
+
+.body3 { 
+    width: 50%;
+    height: 60%;
+    margin-left: 27%;
+    margin-right: auto;
+    background-color: #ea87d8;
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    border-radius: 20%;
+    text-align: center;
+    background-size: contain;
+    background-image: url("images/poza_index.jpg")
+}
+
+.buton {
+    background-color: #E6B9DE;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 3%;
+    border-radius: 20%;
+  }
+
+  .buton_csv {
+    background-color: #F875AA;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 3%;
+    border-radius: 20%;
+  }
+
+  .buton_stergere {
+    background-color: #E6B9DE;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 3%;
+    border-radius: 20%;
+  }
+
+  .lista {
+    
+    width: auto;
+    height: auto;
+    margin-left: 45%;
+    margin-right: auto;
+    background-color: transparent;
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    border-radius: 20%;
+    text-align: left;
+    /* overflow-y: scroll; */
+
+    
+}
+
+.tabel {
+    
+    width: auto;
+    height: auto;
+    margin-left: 25%;
+    margin-right: auto;
+    background-color: transparent;
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    border-radius: 20%;
+    text-align: left;
+}
+
+
+.body2, .body3, .lista, .tabel {
+  overflow: auto;
+  /* other styles */
+}

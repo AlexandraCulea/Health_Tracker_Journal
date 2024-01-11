@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Jurnal de Sănătate</title>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     <style>
         /* Stilizare pentru elementele option */
@@ -17,10 +17,53 @@
             border-radius: 5px;
             width: 150px;
             font-size: 16px;
+
+        }
+
+
+        body {
+          margin: 0;
+        }
+        
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          width: 15%;
+          background-color: #f1f1f1;
+          position: fixed;
+          height: 100%;
+          overflow: auto;
+        }
+        
+        li a {
+          display: block;
+          color: #000;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+        
+        li a.active {
+          background-color: #F875AA;
+          color: white;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #555;
+          color: white;
         }
     </style>
 </head>
 <body>
+    <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/activitati">Activitati zilnice</a></li>
+        <li><a href="/simptome">Simptome</a></li>
+        <li><a href="/stare_de_spirit">Stare de Spirit</a></li>
+        <li><a href="/rezumat">Rezumat</a></li>
+        <li><a href="/obiective">Obiective</a></li>
+      </ul>
+      <div class="body2">
     <h1>Simptome...</h1>
     <form action="/proceseaza_simptome" method="post">
         <label for="simptome">Simptome:</label>
@@ -42,25 +85,26 @@
             <option value="Indigestie">Indigestie</option>
             <option value="Insomnie">Insomine</option>
 
-            <input type="submit" value="Trimite">
+            <input type="submit" value="Trimite" class="buton">
 
         </select><br><br>
+    </form>
     
     </div>
+    </div>
 
-
-
-    <h2>Activități înregistrate:</h2>
+    <div class="lista">
     <ul>
         {% for simptom in simptome %}
             <li>Data: {{ simptom.data.strftime('%d.%m.%Y') }}, Simptom: {{ simptom.simptom_input + " " + simptom.simptom_select }}
                 <form action="/sterge_simptom" method="post">
                     <input type="hidden" name="id" id="id" value={{simptom.id}}>
-                    <input type="submit" value="Sterge">
+                    <input type="submit" value="Sterge" class="buton_stergere">
                 </form>
             </li>
         {% endfor %}
     </ul>
+    </div>
 
     
 </body>

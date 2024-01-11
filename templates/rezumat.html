@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <style>
             table, th, td {
                 border: 1px solid black;
                 border-collapse: collapse;
                 padding: 10px;
             }
+            body {
+          margin: 0;
+        }
+        
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          width: 15%;
+          background-color: #f1f1f1;
+          position: fixed;
+          height: 100%;
+          overflow: auto;
+        }
+        
+        li a {
+          display: block;
+          color: #000;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+        
+        li a.active {
+          background-color: #F875AA;
+          color: white;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #555;
+          color: white;
+        }
         </style>
         <title>Rezumat</title>
     </head>
     <body>
-        <div>
+        <ul>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/activitati">Activitati zilnice</a></li>
+            <li><a href="/simptome">Simptome</a></li>
+            <li><a href="/stare_de_spirit">Stare de Spirit</a></li>
+            <li><a href="/rezumat">Rezumat</a></li>
+            <li><a href="/obiective">Obiective</a></li>
+          </ul>
+        <div class="tabel">
             <h1>Rezumat Zilnic</h1>
             <table id="rezumat_zilnic">
                 <thead>
@@ -31,8 +71,16 @@
                             <td>{{ row[0].data.strftime('%d.%m.%Y') }}</td>
                             <td>{{ row[0].ore_dormite }}</td>
                             <td>{{ row[0].durata_activitati }}</td>
+                            {% if row[1] %}
                             <td>{{ row[1].simptom_input + " " + row[1].simptom_select }}</td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                            {% if row[2] %}
                             <td>{{ row[2].stare }}</td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
                             {% for item in obiectiv %}
                                 {% set somn = row[0].ore_dormite | int %}
                                 {% set obiectiv_somn = item.ore_dormite | int %}
@@ -74,9 +122,9 @@
                 </tbody>
             </table>
             <br><br>
-            <button onclick="exportTableToCSV('rezumat_zilnic', 'export_rezumat_zilnic.csv')">Exportă CSV</button>
+            <button onclick="exportTableToCSV('rezumat_zilnic', 'export_rezumat_zilnic.csv')" class="buton_csv">Exportă CSV</button>
         </div>
-        <div>
+        <div class="tabel">
             <h1>Rezumat Saptamanal</h1>
             <table id="rezumat_saptamanal">
                 <thead>
@@ -94,14 +142,22 @@
                             <td>{{ row[0].data.strftime('%d.%m.%Y') }}</td>
                             <td>{{ row[0].ore_dormite }}</td>
                             <td>{{ row[0].durata_activitati }}</td>
+                            {% if row[1] %}
                             <td>{{ row[1].simptom_input + " " + row[1].simptom_select }}</td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                            {% if row[2] %}
                             <td>{{ row[2].stare }}</td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <br><br>
-            <button onclick="exportTableToCSV('rezumat_saptamanal', 'export_rezumat_saptamanal.csv')">Exportă CSV</button>
+            <button onclick="exportTableToCSV('rezumat_saptamanal', 'export_rezumat_saptamanal.csv')" class="buton_csv">Exportă CSV</button>
         </div>
 
         <script>

@@ -2,8 +2,52 @@
 <html>
 <head>
     <title>Jurnal de Sănătate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+        body {
+          margin: 0;
+        }
+        
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          width: 15%;
+          background-color: #f1f1f1;
+          position: fixed;
+          height: 100%;
+          overflow: auto;
+        }
+        
+        li a {
+          display: block;
+          color: #000;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+        
+        li a.active {
+          background-color: #F875AA;
+          color: white;
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #555;
+          color: white;
+        }
+        </style>
 </head>
 <body>
+    <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/activitati">Activitati zilnice</a></li>
+        <li><a href="/simptome">Simptome</a></li>
+        <li><a href="/stare_de_spirit">Stare de Spirit</a></li>
+        <li><a href="/rezumat">Rezumat</a></li>
+        <li><a href="/obiective">Obiective</a></li>
+      </ul>
+    <div class="body2">
     <h1>Activitati zilnice!</h1>
     <div>
         <form action="/proceseaza_activitati" method="post">
@@ -23,21 +67,23 @@
             <label for="Cina">Cina: </label>
             <input type="cina" id="cina" name="cina"><br><br>
 
-            <input type="submit" value="Salveaza">
+            <input type="submit" value="Salveaza" class="buton">
         </form>  
+    
     </div>
-    <div>
+    </div>
+    <div class="lista">
         <ul>
             {% for activitate in activitati %}
                 <li>{{ activitate.data.strftime('%d.%m.%Y') }} - {{ activitate.ore_dormite }} - {{activitate.durata_activitati}} - {{activitate.mic_dejun}} - {{activitate.pranz}} - {{activitate.cina}} 
                     <form action="/sterge_activitate" method="post">
                         <input type="hidden" name="id" id="id" value={{activitate.id}} >
-                        <input type="submit" value="Sterge">
+                        <input type="submit" value="Sterge" class="buton_stergere">
                     </form>
                 </li>
             {% endfor %}
         </ul>
     </div>
-    
+   
 </body>
 </html>
